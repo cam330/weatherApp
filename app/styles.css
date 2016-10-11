@@ -1,0 +1,51 @@
+body
+{
+	padding: 3em;
+}
+#weatherInfo p
+{
+	color: green;
+	font-weight: bold;
+}
+.col-sm-4
+{
+	text-align: center;
+	display: inline-block;
+}
+#weatherInfo
+{
+	border-top: 1px solid #ccc;
+	padding-top: 1em;
+}
+.panel-body
+{
+	text-align: center;
+}
+#weatherSummaryTop label
+{
+	font-size: 2em;
+}
+#dateAndTime
+{
+	text-align: left;
+}
+#searchDiv
+{
+	padding-bottom: 2em;
+}
+.jumbotron label
+{
+	font-size: 5em;
+}
+.jumbotron
+{
+	padding: 3em;
+}
+#historyName
+{
+	text-align: left;
+}
+.ng-cloak
+{
+	display: none;
+}

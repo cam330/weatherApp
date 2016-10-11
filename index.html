@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<title>Weather App</title>
+<!-- bower:css -->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+<link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+<!-- endbower -->
+
+<!-- inject:css -->
+<link rel="stylesheet" href="/app/styles.css">
+<!-- endinject -->
+</head>
+<body ng-controller="WeatherController as vm" class="ng-cloak">
+<div class="jumbotron">
+	<label>Weather App</label>
+	<p>Always know if you'll need an ubmrella!</p>
+</div>
+<div name="weatherDiv">
+	<div name="searchDiv" id="searchDiv" class="searchField">
+		<div class="btn-group">
+			<button class="btn btn-primary" ng-click="vm.cityName('SanDiego')">San Diego</button>
+			<button class="btn btn-primary" ng-click="vm.cityName('NewYork')">New York</button>
+			<button class="btn btn-primary" ng-click="vm.cityName('WashingtonDC')">Washington D.C</button>
+			<button class="btn btn-primary" ng-click="vm.cityName('London')">London</button>
+			<button class="btn btn-primary" ng-click="vm.cityName('Tokyo')">Tokyo</button>
+		</div>
+		<form name="checkForm">
+			<div class="input-group">
+
+				<input type="text" name="name" class="form-control" ng-model="cityInput" required>
+
+
+				<div class="input-group-btn">
+					<button class="btn btn-default" ng-click="vm.cityName(cityInput)" ng-disabled="checkForm.$invalid">Go!</button>
+				</div>
+			</div>
+			<div ng-messages="checkForm.name.$error"  ng-if='checkForm.name.$dirty'>
+  				<div ng-message="required">Add some text</div>
+			</div>
+		</form>
+	</div>
+	<div class="col-sm-5">
+		<div class="panel panel-info">
+			<div class="panel-heading">Weather</div>
+			<div class="panel-body">
+				<div id="weatherSummaryTop">
+					<img src="http://openweathermap.org/img/w/{{vm.weather.weather[0].icon}}.png">
+					<label>{{vm.weather.name}}</label>
+				</div>
+				<p>Lat/Long: {{vm.weather.coord.lat}},{{vm.weather.coord.lon}}</p>
+				<div id="weatherInfo">
+					<div class="col-sm-12">
+						<div class="col-sm-4">
+							<label>Temperature</label>
+							<p>{{vm.weather.main.temp}}F</p>
+						</div>
+						<div class="col-sm-4">
+							<label>Pressure</label>
+							<p>{{vm.weather.main.temp}}</p>
+						</div>
+						<div class="col-sm-4">
+							<label>Humidity</label>
+							<p>{{vm.weather.main.humidity}}%</p>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-4">
+							<label>Lowest Temp</label>
+							<p>{{vm.weather.main.temp_min}}F</p>
+						</div>
+						<div class="col-sm-4">
+							<label>Highest Temp</label>
+							<p>{{vm.weather.main.temp_max}}F</p>
+						</div>
+						<div class="col-sm-4">
+							<label>Wind Speed</label>
+							<p>{{vm.weather.wind.speed}}mph</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-offset-1 col-sm-5">
+		<div class="panel panel-info">
+			<div class="panel-heading">Search History</div>
+		  	<div class="panel-body">
+		 		<table class="table col-sm-12 table-striped">
+					<tr ng-repeat="data in vm.searchedArray">
+						<td id="historyName">{{data.name}}</td>
+						<td id="dateAndTime" class="col-sm-1">{{data.time | date:'M/d/y h:mm:ss'}}</td> 
+					</tr>
+				</table>
+				<!-- <label>{{searchedArray}}</label> -->
+		  	</div>
+		</div>
+	</div>
+</div>
+
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/toastr/toastr.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<!-- endbower -->
+
+<!-- inject:js -->
+<script src="/app/app.js"></script>
+<script src="/app/weather.controller.js"></script>
+<script src="/app/weather.factory.js"></script>
+<!-- endinject -->
+</body>
+</html>
